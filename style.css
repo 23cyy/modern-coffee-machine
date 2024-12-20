@@ -1,0 +1,126 @@
+html, body {
+    margin:0; padding:0; box-sizing:border-box;
+    width:100%; height:100%;
+    background: #EAE7DC;
+    display:flex; align-items:center; justify-content:center;
+    font-family: sans-serif;
+    overflow:hidden;
+  }
+
+  .scene {
+    width:100vw; height:100vh;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .coffee-machine {
+    position: relative;
+    width: 200px; height: 300px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  /* Hover glow */
+  .coffee-machine:hover {
+    transform: scale(1.02);
+  }
+
+  .machine-body {
+    position: relative;
+    width: 160px; height: 220px;
+    background: linear-gradient(to bottom, #fff 0%, #f0f0f0 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: 20px;
+  }
+
+  /* Top part of the coffee machine */
+  .machine-top {
+    width: 120px; height: 20px;
+    background: #dcdcdc;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  /* Control panel */
+  .machine-panel {
+    width: 100px; height: 60px;
+    margin-top: 15px;
+    background: #eee;
+    border-radius: 15px;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.05);
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .machine-button {
+    width: 20px; height:20px;
+    background: radial-gradient(circle, #ff6666 0%, #ff2a2a 100%);
+    border-radius:50%;
+    box-shadow: 0 0 5px rgba(255,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Spout */
+  .machine-spout {
+    width: 10px; height: 20px;
+    margin-top: 15px;
+    background: #bbb;
+    border-radius: 5px;
+  }
+
+  /* Cup */
+  .machine-cup {
+    width: 80px; height: 80px;
+    background: #fff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 0 30px 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius:30px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+
+  /* Coffee inside cup */
+  .coffee {
+    width: 100%;
+    height: 0%; /* Will fill up with animation */
+    background: linear-gradient(to top, #6f4e37, #8B5A2B);
+    transition: height 1.5s ease;
+  }
+
+  /* Drip (hidden by default) */
+  .coffee-drip {
+    position: absolute;
+    width: 5px; height: 5px;
+    background: #6f4e37;
+    border-radius: 50%;
+    top: 140px; /* just below spout */
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+  }
+
+  .coffee-machine.brewing .coffee-drip {
+    animation: drip 0.4s infinite;
+  }
+
+  @keyframes drip {
+    0% { transform: translate(-50%, -20px); opacity:1; }
+    50% { transform: translate(-50%, 60px); opacity:1; }
+    100% { transform: translate(-50%, 120px); opacity:0; }
+  }
+
+  /* When brewing, the coffee fills up */
+  .coffee-machine.brewing .coffee {
+    height: 60%; /* fill the cup around 60% */
+  }
+
+  /* Active button press effect */
+  .coffee-machine.brewing .machine-button {
+    transform: scale(0.9);
+    box-shadow: 0 0 10px rgba(255,0,0,0.6);
+  }
